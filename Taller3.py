@@ -90,9 +90,9 @@ class F:
         print("Ingrese el producto: ")
         producto = input()
         print("Ingrese el precio: ")
-        precio = input()
+        precio = input(float)
         print("Ingrese la cantidad: ")
-        cantidad = input()
+        cantidad = input(int)
         venta = {"producto": producto, "cantidad": cantidad, "precio": precio}
         if id_cliente in ventas:
             ventas[id_cliente].append(venta)
@@ -144,7 +144,7 @@ while True:
     
     elif op == "2":
         for cliente in clientes:
-            print(cliente["nombre"])
+            print(cliente["nombre"] +" "+ cliente["apellido"])
     
     elif op == "3":
         print("Ingrese el ID del cliente a eliminar: ")
