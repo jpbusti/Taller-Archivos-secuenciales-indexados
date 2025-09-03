@@ -69,7 +69,7 @@ class F:
         telefono = input()
         cliente = {"id_cliente": nuevo_id,"nombre": nombre,"apellido": apellido,"telefono": telefono,"activo": "1"}
         clientes.append(cliente)
-            
+
     def nuevopedido(ventas):
         nuevo_id = str(len(ventas) + 1)
         print("Ingrese el ID del cliente: ")
@@ -118,7 +118,7 @@ class F:
             total += p
         print("Total de la venta:" + {total})    
 
-ventas = {}
+ventastotales = {}
 productos = [{"id_producto": "1", "nombre": "Laptop", "precio": "2500.00"},
              {"id_producto": "2", "nombre": "Mouse", "precio": "20.50"},
              {"id_producto": "3", "nombre": "Teclado", "precio": "45.00"},
@@ -165,6 +165,7 @@ while True:
         f.write("productos.csv", productos)
     elif op == "5":
         F.nuevopedido(ventas)
+        f.write("ventas.csv", ventas)
     elif op == "6":
         F.listarventas()   
     elif op == "7":
