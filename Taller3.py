@@ -104,19 +104,16 @@ class F:
             ventas[id_cliente].append(venta)
         else:
             ventas[id_cliente] = [venta]
-
-    def listarventas(nombrecliente):
+    def listarventas():
         for c in clientes:
-            if c["nombre"].lower() == nombrecliente.lower():
+            if c["nombre"].lower() == nombre.lower():
                 cliente = c
-                break  
+                break
         if cliente is None:
             print("Cliente no encontrado")
             return
-    
         id_cliente = cliente["id_cliente"]
         total = 0
-
         for venta in ventas:
             if venta["id_cliente"] == id_cliente:
                 id_producto = venta["id_producto"]
@@ -124,11 +121,10 @@ class F:
 
                 for p in productos:
                     if p["id_producto"] == id_producto:
-                        total += p["precio"] * cantidad
-                        break 
+                        total += float(p["precio"]) * int(cantidad)
+                        break
         print(total)
 
-ventastotales = {}
 productos = [{"id_producto": "1", "nombre": "Laptop", "precio": "2500.00"},
              {"id_producto": "2", "nombre": "Mouse", "precio": "20.50"},
              {"id_producto": "3", "nombre": "Teclado", "precio": "45.00"},
@@ -179,6 +175,6 @@ while True:
     elif op == "6":
         print("Ingrese el nombre del cliente: ")
         nombre = input()
-        F.listarventas(nombre)   
+        F.listarventas()
     elif op == "7":
         break
