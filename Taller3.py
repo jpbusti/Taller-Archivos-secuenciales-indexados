@@ -104,19 +104,29 @@ class F:
             ventas[id_cliente].append(venta)
         else:
             ventas[id_cliente] = [venta]
-    def listarventas():
-        print ("Ingrese el ID del cliente: ")
-        id_cliente = input()
-        if id_cliente not in ventas:
-            print("No hay ventas registradas para este cliente.")
+
+    def listarventas(nombrecliente):
+        for c in clientes:
+            if c["nombre"].lower() == nombrecliente.lower():
+                cliente = c
+                break  
+        if cliente is None:
+            print("Cliente no encontrado")
             return
+    
+        id_cliente = cliente["id_cliente"]
         total = 0
-        print("Ventas del cliente:")
-        for venta in ventas[id_cliente]:
-            p = int(venta["cantidad"]) * float(venta["precio"])
-            print(f"- {venta['producto']} Cantidad: {venta['cantidad']} "f"Precio unitario: {venta['precio_unitario']} Subtotal: {p}")            
-            total += p
-        print("Total de la venta:" + {total})    
+
+        for venta in ventas:
+            if venta["id_cliente"] == id_cliente:
+                id_producto = venta["id_producto"]
+                cantidad = venta["cantidad"]
+
+                for p in productos:
+                    if p["id_producto"] == id_producto:
+                        total += p["precio"] * cantidad
+                        break 
+        print(total)
 
 ventastotales = {}
 productos = [{"id_producto": "1", "nombre": "Laptop", "precio": "2500.00"},
@@ -167,6 +177,8 @@ while True:
         F.nuevopedido(ventas)
         f.write("ventas.csv", ventas)
     elif op == "6":
-        F.listarventas()   
+        print("Ingrese el nombre del cliente: ")
+        nombre = input()
+        F.listarventas(nombre)   
     elif op == "7":
         break
